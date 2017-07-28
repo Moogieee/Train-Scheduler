@@ -1,0 +1,37 @@
+.jumbotron {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  margin-top: 10px;
+  margin-bottom: 30px;
+  color: inherit;
+  background-color: #f4f4f4;
+}
+.jumbotron h1,
+.jumbotron .h1 {
+  color: inherit;
+  text-align: center;
+}
+
+.jumbotron p {
+  margin-bottom: 15px;
+  font-size: 20px;
+  font-weight: 200;
+  color: red;
+  text-align: center;
+}
+
+.container .jumbotron,
+.container-fluid .jumbotron {
+  border-radius: 6px;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+.jumbotron .container {
+  max-width: 100%;
+}
+
+#add-train-btn {
+	color: white;
+	background-color: #e72510;
+	border: 1px solid #a91b0c;
+}
