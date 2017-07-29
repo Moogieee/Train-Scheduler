@@ -101,9 +101,9 @@ database.ref().on("child_added", function(snapshot, prevChildKey) {
 	// add values to html page
 	$("#train-table > tbody").append("<tr><td>" + name + 
 									"</td><td>" + destination + 
-									"</td><td>" + frequency + " min" +
+									"</td><td>" + frequency  +
 									"</td><td>" + nextTrainArrival + 
-									"</td><td>" + minTilArrival + " min" +
+									"</td><td>" + minTilArrival +
 									"</td></tr>");
 });
 
@@ -111,20 +111,16 @@ database.ref().on("child_added", function(snapshot, prevChildKey) {
 
 //====================== Current Time Clock ========================
 
-function displayTime() {
-    var time = moment().format('HH:mm:ss');
-    $('#clock').html(time);
-    setTimeout(displayTime, 1000);
-}
+// this clock works fine... except that I tried to get the nextTrainArrival and minTilArrival to refresh every minute but I couldn't. So this would look weird if I left it on my page.
 
-$(document).ready(function() {
-    displayTime();
-});
+// function displayTime() {
+//     var time = moment().format('HH:mm:ss');
+//     $('#clock').html(time);
+//     setTimeout(displayTime, 1000);
+// }
+
+// $(document).ready(function() {
+//     displayTime();
+// });
 
 //==================================================================
-
-function updateTable() {
-	$("#train-table").load("index.html #train-table");
-}
-setInterval(updateTable, 5000);
-updateTable();
