@@ -122,3 +122,9 @@ $(document).ready(function() {
 });
 
 //==================================================================
+
+function updateTable() {
+	$("#train-table").load("index.html #train-table");
+}
+setInterval(updateTable, 5000);
+updateTable();
