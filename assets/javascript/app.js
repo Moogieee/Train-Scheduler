@@ -23,7 +23,7 @@ $("#add-train-btn").on("click", function(event) {
 
 	// store firstTrainTime as UNIX format
 	var firstTrainTime = moment($("#first-train-time-input").val().trim(), "HH:mm").format("X");
-	
+
 	var frequency = $("#frequency-input").val().trim();
 
 	// create local "temporary" object for holding train data
@@ -34,7 +34,7 @@ $("#add-train-btn").on("click", function(event) {
 		frequency: frequency
 	};
 
-	// upload train data to the database
+	// upload train data to the firebase database
 	database.ref().push(newTrain);
 
 	// console.log(newTrain.name);
@@ -45,7 +45,7 @@ $("#add-train-btn").on("click", function(event) {
 
 	alert("Train successfully added");
 
-	// clear the text boxes
+	// clear the input boxes
 	$("#train-name-input").val("");
 	$("#destination-input").val("");
 	$("#first-train-time-input").val("");
@@ -62,7 +62,7 @@ database.ref().on("child_added", function(snapshot, prevChildKey) {
 	var frequency = snapshot.val().frequency;
 
 
-// =================== Train Time Calculations ====================
+//=================== Train Time Calculations =====================
 
 
 	// format currentTime to military time
@@ -97,10 +97,28 @@ database.ref().on("child_added", function(snapshot, prevChildKey) {
 	console.log(nextTrainArrival);
 	console.log(minTilArrival);
 
+
+	// add values to html page
 	$("#train-table > tbody").append("<tr><td>" + name + 
 									"</td><td>" + destination + 
-									"</td><td>" + frequency + 
+									"</td><td>" + frequency + " min" +
 									"</td><td>" + nextTrainArrival + 
-									"</td><td>" + minTilArrival + 
-									" min" + "</td></tr>");
+									"</td><td>" + minTilArrival + " min" +
+									"</td></tr>");
 });
+
+
+
+//====================== Current Time Clock ========================
+
+function displayTime() {
+    var time = moment().format('HH:mm:ss');
+    $('#clock').html(time);
+    setTimeout(displayTime, 1000);
+}
+
+$(document).ready(function() {
+    displayTime();
+});
+
+//==================================================================
